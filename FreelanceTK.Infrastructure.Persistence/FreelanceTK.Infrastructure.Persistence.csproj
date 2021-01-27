@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FreelanceTK.Application\FreelanceTK.Application.csproj" />
+    <ProjectReference Include="..\FreelanceTK.Domain\FreelanceTK.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
