@@ -1,0 +1,16 @@
+{
+	"IdentityServer": {
+		"Clients": {
+			"FreelanceTK.UI": {
+				"Profile": "SPA",
+				"RedirectUri": "http://localhost/callback",
+				"LogoutUri": "http://localhost/"
+			}
+		},
+		"Key": {
+			"Type": "File",
+			"FilePath": "/https/identity.pfx",
+			"Password": "Password1!"
+		}
+	}
+}

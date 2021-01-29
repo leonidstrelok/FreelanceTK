@@ -1,0 +1,14 @@
+{
+  "IdentityServer": {
+    "Clients": {
+      "FreelanceTK.UI": {
+        "Profile": "SPA",
+        "RedirectUri": "http://localhost:3000/callback",
+        "LogoutUri": "http://localhost:3000/"
+      }
+    },
+    "Key": {
+      "Type": "Development"
+    }
+  }
+}

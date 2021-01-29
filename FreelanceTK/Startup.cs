@@ -1,3 +1,5 @@
+using FreelanceTK.Infrastructure.Identity;
+using FreelanceTK.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +30,9 @@ namespace FreelanceTK
         {
 
             services.AddControllers();
+            services.AddPersistence(Configuration)
+                .AddIdentity(Configuration);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreelanceTK", Version = "v1" });
@@ -48,6 +53,8 @@ namespace FreelanceTK
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
