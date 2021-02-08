@@ -18,7 +18,21 @@ namespace FreelanceTK.Infrastructure.Identity.Identity.Extensions
 
             var tokenValidIssuers = configuration.GetSection($"IdentityServer:TokenValidationParameters:ValidIssuers").Get<string[]>();
 
-            services.AddAuthentication().AddIdentityServerJwt();
+            services.AddAuthentication().AddGoogle(config =>
+            {
+                config.ClientId = configuration.GetSection("Authentication:Google")["ClientId"];
+                config.ClientSecret = configuration.GetSection("Authentication:Google")["ClientSecret"];
+            })
+                .AddFacebook(config =>
+                {
+                    config.ClientId = configuration.GetSection("Authentication:Facebook")["ClientId"];
+                    config.ClientSecret = configuration.GetSection("Authentication:Facebook")["ClientSecret"];
+                })
+                .AddMicrosoftAccount(config =>
+                {
+                    config.ClientId = configuration.GetSection("Authentication:Microsoft")["ClientId"];
+                    config.ClientSecret = configuration.GetSection("Authentication:Microsoft")["ClientSecret"];
+                }).AddIdentityServerJwt();
 
         }
 

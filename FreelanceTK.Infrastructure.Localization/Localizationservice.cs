@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FreelanceTK.Infrastructure.Localization
 {
-    public class Localizationservice : ILocalizationService
+    public class LocalizationService : ILocalizationService
     {
         public string this[string key] => GetResource(key);
 

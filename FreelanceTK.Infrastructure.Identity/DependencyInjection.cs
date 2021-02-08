@@ -13,24 +13,16 @@ namespace FreelanceTK.Infrastructure.Identity
     {
         public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityFreelanceTKDbContext>(options =>
+            services.AddDbContext<IdentityFreelanceTKDbContext>((sp, options) =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddTransient<IIdentityService, IdentityService>();
 
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<ApplicationUser,IdentityRole>()
                 .AddEntityFrameworkStores<IdentityFreelanceTKDbContext>()
                 .AddDefaultTokenProviders();
-
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, IdentityFreelanceTKDbContext>();
-
-            services.AddAuthentication()
-                .AddGoogle();
 
             services.AddIdentityServer4(configuration);
 

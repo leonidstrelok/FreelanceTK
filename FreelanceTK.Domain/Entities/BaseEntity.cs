@@ -1,10 +1,14 @@
 ﻿using FreelanceTK.Domain.Entities.Enums;
+using System.Collections.Generic;
 
 namespace FreelanceTK.Domain.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
+        /// <summary>
+        /// ИД
+        /// </summary>
         public int Id { get; set; }
-        public Status Status { get; set; }
+        public List<BaseDomainEvent> Events = new List<BaseDomainEvent>();
     }
 }

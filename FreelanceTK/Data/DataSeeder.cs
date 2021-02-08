@@ -1,4 +1,6 @@
 ﻿using FreelanceTK.Application.Common.Static;
+using FreelanceTK.Domain.Common;
+using FreelanceTK.Domain.Entities.Identity;
 using FreelanceTK.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +19,14 @@ namespace FreelanceTK.Data
         private readonly ILogger<DataSeeder> logger;
         private readonly ApplicationDbContext dbContext;
         private readonly IConfiguration configuration;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
         public DataSeeder(
             ApplicationDbContext dbContext,
             ILogger<DataSeeder> logger,
             IConfiguration configuration,
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             this.dbContext = dbContext;
@@ -46,10 +48,11 @@ namespace FreelanceTK.Data
         {
             if (!userManager.Users.Any(p => p.UserName == "Admin"))
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = "Admin",
                     Email = "admin@gmail.com",
+                    Created = SystemTime.Now()
                 };
 
                 foreach (var role in Roles.LIST)

@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Extensions;
+﻿using FreelanceTK.Domain.Entities.Identity;
+using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
@@ -10,11 +11,11 @@ namespace FreelanceTK.Infrastructure.Identity
 {
     public class DefaultProfileService : IProfileService
     {
-        private readonly IUserClaimsPrincipalFactory<IdentityUser> _claimsFactory;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUserClaimsPrincipalFactory<ApplicationUser> _claimsFactory;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DefaultProfileService(UserManager<IdentityUser> userManager,
-            IUserClaimsPrincipalFactory<IdentityUser> claimsFactory)
+        public DefaultProfileService(UserManager<ApplicationUser> userManager,
+            IUserClaimsPrincipalFactory<ApplicationUser> claimsFactory)
         {
             _userManager = userManager;
             _claimsFactory = claimsFactory;

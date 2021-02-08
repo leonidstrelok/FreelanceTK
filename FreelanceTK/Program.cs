@@ -27,16 +27,21 @@ namespace FreelanceTK
             {
                 builder.AddEnvironmentVariables();
 
-                if (!context.HostingEnvironment.IsProduction())
-                {
-                    builder.AddJsonFile($"identityconfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true)
-                           .AddJsonFile($"emailConfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true)
-                           .AddJsonFile($"serilogconfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true);
-                }
-                else
-                {
-                    LoadProductionConfigs(builder);
-                }
+                //if (!context.HostingEnvironment.IsProduction())
+                //{
+                //    builder.AddJsonFile($"identityconfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true)
+                //           .AddJsonFile($"emailConfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true)
+                //           .AddJsonFile($"serilogconfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true);
+                //}
+                //else
+                //{
+                //    LoadProductionConfigs(builder);
+                //}
+            })
+            .ConfigureServices((builder, services) =>
+            {
+                services.AddScoped<DatabaseMigrator>();
+                services.AddScoped<DataSeeder>();
             })
              .UseSerilog((context, configuration) =>
              {

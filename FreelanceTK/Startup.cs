@@ -1,7 +1,10 @@
 using FreelanceTK.Application;
 using FreelanceTK.Application.Common.Interfaces;
+using FreelanceTK.Extensions;
 using FreelanceTK.Infrastructure.Identity;
+using FreelanceTK.Infrastructure.Localization;
 using FreelanceTK.Infrastructure.Persistence;
+using FreelanceTK.Options;
 using FreelanceTK.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,18 +27,21 @@ namespace FreelanceTK
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ICurrentUserService, CurrentUserService>();
-            services.AddTransient<IEmailSender, MailKitEmailSender>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IEmailSender, MailKitEmailSender>();
+            services.Configure<EmailOptions>(Configuration.GetSection("EmailOptions"));
+
+            services.AddRequestLocalization();
 
             services.AddControllers();
             services.AddApplication()
                 .AddPersistence(Configuration)
-                .AddIdentity(Configuration);
+                .AddIdentity(Configuration)
+                .AddLocalication();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreelanceTK", Version = "v1" });
-            });
+            services.AddSwagger();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,16 +51,19 @@ namespace FreelanceTK
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FreelanceTK v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseRequestLocalization();
+
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

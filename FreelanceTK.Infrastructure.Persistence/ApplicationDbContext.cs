@@ -1,4 +1,5 @@
 ﻿using FreelanceTK.Application.Common.Interfaces;
+using FreelanceTK.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +12,7 @@ namespace FreelanceTK.Infrastructure.Persistence
     public class ApplicationDbContext : DbContext, IApplicationDbContext, IReadOnlyDbContext
     {
         private readonly IMediator mediator;
-        protected ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IMediator mediator) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IMediator mediator) : base(options)
         {
             this.mediator = mediator;
         }
