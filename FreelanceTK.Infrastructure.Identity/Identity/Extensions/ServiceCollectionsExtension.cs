@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+﻿using FreelanceTK.Domain.Entities.Identity;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,7 +13,7 @@ namespace FreelanceTK.Infrastructure.Identity.Identity.Extensions
         public static void AddIdentityServer4(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddIdentityServer()
-                .AddApiAuthorization<IdentityUser, IdentityFreelanceTKDbContext>(options => ConfigureApiAuthorization(options, configuration))
+                .AddApiAuthorization<ApplicationUser, IdentityFreelanceTKDbContext>(options => ConfigureApiAuthorization(options, configuration))
                 .AddProfileService<DefaultProfileService>();
 
             var tokenValidIssuers = configuration.GetSection($"IdentityServer:TokenValidationParameters:ValidIssuers").Get<string[]>();

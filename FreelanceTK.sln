@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK", "FreelanceTK\FreelanceTK.csproj", "{ACF23882-5139-4677-9750-871F5EAECAF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceTK", "FreelanceTK\FreelanceTK.csproj", "{ACF23882-5139-4677-9750-871F5EAECAF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{BB8A3A89-2B19-475E-8086-E532309C8E25}"
 EndProject
@@ -19,15 +19,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{DCD89374-0D0
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7EEC25B1-BB61-48C0-8277-C1C275B7D345}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK.Domain", "FreelanceTK.Domain\FreelanceTK.Domain.csproj", "{2321B92B-1582-4EDC-AAB1-6900D75AE895}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceTK.Domain", "FreelanceTK.Domain\FreelanceTK.Domain.csproj", "{2321B92B-1582-4EDC-AAB1-6900D75AE895}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK.Application", "FreelanceTK.Application\FreelanceTK.Application.csproj", "{2B7E107B-EBA9-41C8-9C1F-646CB3AEB3EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceTK.Application", "FreelanceTK.Application\FreelanceTK.Application.csproj", "{2B7E107B-EBA9-41C8-9C1F-646CB3AEB3EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK.Infrastructure.Persistence", "FreelanceTK.Infrastructure.Persistence\FreelanceTK.Infrastructure.Persistence.csproj", "{7C6D76F4-D5E0-4E2E-84CB-1C78AB92642C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceTK.Infrastructure.Persistence", "FreelanceTK.Infrastructure.Persistence\FreelanceTK.Infrastructure.Persistence.csproj", "{7C6D76F4-D5E0-4E2E-84CB-1C78AB92642C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK.Infrastructure.Identity", "FreelanceTK.Infrastructure.Identity\FreelanceTK.Infrastructure.Identity.csproj", "{A7DF5EE1-B722-45C9-9036-382CAEA33BF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceTK.Infrastructure.Identity", "FreelanceTK.Infrastructure.Identity\FreelanceTK.Infrastructure.Identity.csproj", "{A7DF5EE1-B722-45C9-9036-382CAEA33BF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK.Infrastructure.Permission", "FreelanceTK.Infrastructure.Permission\FreelanceTK.Infrastructure.Permission.csproj", "{FC934F0B-B776-489E-AC68-FC07CE2E0130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceTK.Infrastructure.Permission", "FreelanceTK.Infrastructure.Permission\FreelanceTK.Infrastructure.Permission.csproj", "{FC934F0B-B776-489E-AC68-FC07CE2E0130}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceTK.Infrastructure.Localization", "FreelanceTK.Infrastructure.Localization\FreelanceTK.Infrastructure.Localization.csproj", "{F5648F1A-C455-4E7A-83AD-CB409D853F6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{FC934F0B-B776-489E-AC68-FC07CE2E0130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC934F0B-B776-489E-AC68-FC07CE2E0130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC934F0B-B776-489E-AC68-FC07CE2E0130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5648F1A-C455-4E7A-83AD-CB409D853F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5648F1A-C455-4E7A-83AD-CB409D853F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5648F1A-C455-4E7A-83AD-CB409D853F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5648F1A-C455-4E7A-83AD-CB409D853F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{7C6D76F4-D5E0-4E2E-84CB-1C78AB92642C} = {3E4651F0-3CCD-4678-80BE-2E925E286EB5}
 		{A7DF5EE1-B722-45C9-9036-382CAEA33BF5} = {3E4651F0-3CCD-4678-80BE-2E925E286EB5}
 		{FC934F0B-B776-489E-AC68-FC07CE2E0130} = {3E4651F0-3CCD-4678-80BE-2E925E286EB5}
+		{F5648F1A-C455-4E7A-83AD-CB409D853F6E} = {3E4651F0-3CCD-4678-80BE-2E925E286EB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DCFE1B8E-7189-4E09-932D-377F4F9F8693}

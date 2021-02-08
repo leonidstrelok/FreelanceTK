@@ -1,3 +1,4 @@
+using FreelanceTK.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +15,11 @@ namespace FreelanceTK
         {
             var host = CreateHostBuilder(args).Build();
             using var scope = host.Services.CreateScope();
-            //await MigrateDatabases(scope);
-            //await SeedData(scope);
+            await MigrateDatabases(scope);
+            await SeedData(scope);
             await host.RunAsync();
         }
+
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -53,5 +55,19 @@ namespace FreelanceTK
                 builder.AddJsonFile(file);
             }
         }
+
+
+        private static async Task SeedData(IServiceScope scope)
+        {
+            DataSeeder dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+            await dataSeeder.SeedData();
+        }
+
+        private static async Task MigrateDatabases(IServiceScope scope)
+        {
+            var databaseMigrator = scope.ServiceProvider.GetRequiredService<DatabaseMigrator>();
+            await databaseMigrator.MigrateAsync();
+        }
+
     }
 }

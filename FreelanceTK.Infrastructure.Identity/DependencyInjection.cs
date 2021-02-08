@@ -1,4 +1,7 @@
-﻿using FreelanceTK.Infrastructure.Identity.Identity.Extensions;
+﻿using FreelanceTK.Application.Common.Interfaces;
+using FreelanceTK.Domain.Entities.Identity;
+using FreelanceTK.Infrastructure.Identity.Identity;
+using FreelanceTK.Infrastructure.Identity.Identity.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,15 +18,16 @@ namespace FreelanceTK.Infrastructure.Identity
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddTransient<IIdentityService, IdentityService>();
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityFreelanceTKDbContext>()
                 .AddDefaultTokenProviders();
 
 
             services.AddIdentityServer()
-                .AddApiAuthorization<IdentityUser, IdentityFreelanceTKDbContext>();
+                .AddApiAuthorization<ApplicationUser, IdentityFreelanceTKDbContext>();
 
             services.AddAuthentication()
                 .AddGoogle();

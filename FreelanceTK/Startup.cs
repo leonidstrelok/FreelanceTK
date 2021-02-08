@@ -1,18 +1,14 @@
+using FreelanceTK.Application;
+using FreelanceTK.Application.Common.Interfaces;
 using FreelanceTK.Infrastructure.Identity;
 using FreelanceTK.Infrastructure.Persistence;
+using FreelanceTK.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FreelanceTK
 {
@@ -28,9 +24,12 @@ namespace FreelanceTK
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
+            services.AddTransient<IEmailSender, MailKitEmailSender>();
 
             services.AddControllers();
-            services.AddPersistence(Configuration)
+            services.AddApplication()
+                .AddPersistence(Configuration)
                 .AddIdentity(Configuration);
 
             services.AddSwaggerGen(c =>

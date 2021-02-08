@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FreelanceTK.Infrastructure.Persistence
 {
@@ -18,7 +13,9 @@ namespace FreelanceTK.Infrastructure.Persistence
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
+
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddScoped<IReadOnlyDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             return services;
         }

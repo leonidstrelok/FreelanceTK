@@ -2,15 +2,13 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FreelanceTK.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext, IReadOnlyDbContext
     {
         private readonly IMediator mediator;
         protected ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IMediator mediator) : base(options)
@@ -100,6 +98,11 @@ namespace FreelanceTK.Infrastructure.Persistence
         public override int SaveChanges()
         {
             return SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public IQueryable<T> Query<T>() where T : class
+        {
+            return Set<T>().AsNoTracking();
         }
     }
 }

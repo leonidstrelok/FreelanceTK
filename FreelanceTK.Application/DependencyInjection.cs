@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FreelanceTK.Application.Common.Behaviours;
+using MediatR;
+using MediatR.Pipeline;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace FreelanceTK.Application
 {
@@ -6,6 +10,13 @@ namespace FreelanceTK.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestPostProcessorBehavior<,>));
+
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             return services;
         }
