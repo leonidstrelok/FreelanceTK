@@ -1,4 +1,4 @@
-﻿namespace FreelanceTK.Application.Common.Static
+﻿namespace FreelanceTK.Application.Common.Constants
 {
     /// <summary>
     /// Роли

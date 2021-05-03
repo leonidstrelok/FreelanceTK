@@ -7,9 +7,9 @@ namespace FreelanceTK.Data
 {
     public class DatabaseMigrator
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly AppDbContext dbContext;
         private readonly IdentityFreelanceTKDbContext identityFreelanceTKDbContext;
-        public DatabaseMigrator(ApplicationDbContext dbContext, IdentityFreelanceTKDbContext identityFreelanceTKDbContext)
+        public DatabaseMigrator(AppDbContext dbContext, IdentityFreelanceTKDbContext identityFreelanceTKDbContext)
         {
             this.dbContext = dbContext;
             this.identityFreelanceTKDbContext = identityFreelanceTKDbContext;

@@ -11,8 +11,8 @@ namespace FreelanceTK.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestPostProcessorBehavior<,>));
+            services.AddScoped(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

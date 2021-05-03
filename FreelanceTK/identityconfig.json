@@ -7,10 +7,33 @@
 				"LogoutUri": "http://localhost/"
 			}
 		},
+		"TokenValidationParameters": {
+			"ValidIssuers": [
+				"https://192.168.4.158"
+			]
+		},
 		"Key": {
 			"Type": "File",
 			"FilePath": "/https/identity.pfx",
 			"Password": "Password1!"
+		}
+	},
+
+	"IdentityOptions": {
+		"Lockout": {
+			"MaxFailedAccessAttempts": 10,
+			"DefaultLockoutTimeSpan": "00:20:00"
+		},
+		"Password": {
+			"RequiredLength": 8,
+			"RequiredUniqueChars": 1,
+			"RequireDigit": true,
+			"RequireLowercase": true,
+			"RequireNonAlphanumeric": true,
+			"RequireUppercase": true
+		},
+		"PasswordValidation": {
+			"NumberOfDistinctLastPasswordsInHistory": 4
 		}
 	}
 }

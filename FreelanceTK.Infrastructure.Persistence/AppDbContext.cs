@@ -1,5 +1,4 @@
 ﻿using FreelanceTK.Application.Common.Interfaces;
-using FreelanceTK.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace FreelanceTK.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext, IReadOnlyDbContext
+    public class AppDbContext : DbContext, IApplicationDbContext, IReadOnlyDbContext
     {
         private readonly IMediator mediator;
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IMediator mediator) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator) : base(options)
         {
             this.mediator = mediator;
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
 

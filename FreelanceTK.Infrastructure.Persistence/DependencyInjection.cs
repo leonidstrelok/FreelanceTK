@@ -9,13 +9,13 @@ namespace FreelanceTK.Infrastructure.Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>((sp, options) =>
+            services.AddDbContext<AppDbContext>((sp, options) =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
-            services.AddScoped<IReadOnlyDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<AppDbContext>());
+            services.AddScoped<IReadOnlyDbContext>(provider => provider.GetService<AppDbContext>());
 
             return services;
         }

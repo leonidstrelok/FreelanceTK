@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using FreelanceTK.Application.Common.Exceptions;
+﻿using FreelanceTK.Application.Common.Exceptions;
 using FreelanceTK.Application.Common.Interfaces;
 using FreelanceTK.Domain.Common;
 using FreelanceTK.Domain.Entities.Identity;
@@ -7,10 +6,8 @@ using FreelanceTK.Infrastructure.Identity.Identity.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

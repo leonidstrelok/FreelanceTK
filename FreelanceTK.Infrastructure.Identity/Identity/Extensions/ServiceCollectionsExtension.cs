@@ -18,21 +18,23 @@ namespace FreelanceTK.Infrastructure.Identity.Identity.Extensions
 
             var tokenValidIssuers = configuration.GetSection($"IdentityServer:TokenValidationParameters:ValidIssuers").Get<string[]>();
 
-            services.AddAuthentication().AddGoogle(config =>
-            {
-                config.ClientId = configuration.GetSection("Authentication:Google")["ClientId"];
-                config.ClientSecret = configuration.GetSection("Authentication:Google")["ClientSecret"];
-            })
-                .AddFacebook(config =>
-                {
-                    config.ClientId = configuration.GetSection("Authentication:Facebook")["ClientId"];
-                    config.ClientSecret = configuration.GetSection("Authentication:Facebook")["ClientSecret"];
-                })
-                .AddMicrosoftAccount(config =>
-                {
-                    config.ClientId = configuration.GetSection("Authentication:Microsoft")["ClientId"];
-                    config.ClientSecret = configuration.GetSection("Authentication:Microsoft")["ClientSecret"];
-                }).AddIdentityServerJwt();
+            services.AddAuthentication()
+            //     .AddGoogle(config =>
+            // {
+            //     config.ClientId = configuration.GetSection("Authentication:Google")["ClientId"];
+            //     config.ClientSecret = configuration.GetSection("Authentication:Google")["ClientSecret"];
+            // })
+                // .AddFacebook(config =>
+                // {
+                //     config.ClientId = configuration.GetSection("Authentication:Facebook")["ClientId"];
+                //     config.ClientSecret = configuration.GetSection("Authentication:Facebook")["ClientSecret"];
+                // })
+                // .AddMicrosoftAccount(config =>
+                // {
+                //     config.ClientId = configuration.GetSection("Authentication:Microsoft")["ClientId"];
+                //     config.ClientSecret = configuration.GetSection("Authentication:Microsoft")["ClientSecret"];
+                // })
+                .AddIdentityServerJwt();
 
         }
 
@@ -47,7 +49,7 @@ namespace FreelanceTK.Infrastructure.Identity.Identity.Extensions
         private static void ConfigureApiResources(ApiResourceCollection apiResources)
         {
             var apiResource = apiResources.First();
-            //apiResource.UserClaims = new string[] { EmployeeClaimTypes.UserIdentifier };
+            // apiResource.UserClaims = new string[] { EmployeeClaimTypes.UserIdentifier };
         }
 
         private static void ConfigureClients(ClientCollection clients, IConfiguration configuration)

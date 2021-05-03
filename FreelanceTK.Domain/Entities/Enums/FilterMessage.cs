@@ -1,4 +1,4 @@
-﻿namespace FreelanceTK.Domain.Entities
+﻿namespace FreelanceTK.Domain.Entities.Enums
 {
     public enum FilterMessage
     {

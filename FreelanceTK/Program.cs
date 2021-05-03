@@ -23,34 +23,34 @@ namespace FreelanceTK
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((context, builder) =>
-            {
-                builder.AddEnvironmentVariables();
+                .ConfigureAppConfiguration((context, builder) =>
+                {
+                    builder.AddEnvironmentVariables();
 
-                //if (!context.HostingEnvironment.IsProduction())
-                //{
-                //    builder.AddJsonFile($"identityconfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true)
-                //           .AddJsonFile($"emailConfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true)
-                //           .AddJsonFile($"serilogconfig.{context.HostingEnvironment.EnvironmentName}.json", optional: true);
-                //}
-                //else
-                //{
-                //    LoadProductionConfigs(builder);
-                //}
-            })
-            .ConfigureServices((builder, services) =>
-            {
-                services.AddScoped<DatabaseMigrator>();
-                services.AddScoped<DataSeeder>();
-            })
-             .UseSerilog((context, configuration) =>
-             {
-                 configuration.Enrich.FromLogContext().ReadFrom.Configuration(context.Configuration);
-             })
-             .ConfigureWebHostDefaults(webBuilder =>
-             {
-                 webBuilder.UseStartup<Startup>();
-             });
+                    if (!context.HostingEnvironment.IsProduction())
+                    {
+                        builder.AddJsonFile($"identityconfig.{context.HostingEnvironment.EnvironmentName}.json",
+                                optional: true)
+                            .AddJsonFile($"emailConfig.{context.HostingEnvironment.EnvironmentName}.json",
+                                optional: true)
+                            .AddJsonFile($"serilogconfig.{context.HostingEnvironment.EnvironmentName}.json",
+                                optional: true);
+                    }
+                    else
+                    {
+                        LoadProductionConfigs(builder);
+                    }
+                })
+                .ConfigureServices((builder, services) =>
+                {
+                    services.AddScoped<DatabaseMigrator>();
+                    services.AddScoped<DataSeeder>();
+                })
+                .UseSerilog((context, configuration) =>
+                {
+                    configuration.Enrich.FromLogContext().ReadFrom.Configuration(context.Configuration);
+                })
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
 
         private static void LoadProductionConfigs(IConfigurationBuilder builder)
         {
@@ -73,6 +73,5 @@ namespace FreelanceTK
             var databaseMigrator = scope.ServiceProvider.GetRequiredService<DatabaseMigrator>();
             await databaseMigrator.MigrateAsync();
         }
-
     }
 }
